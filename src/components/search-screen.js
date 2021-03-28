@@ -6,19 +6,28 @@ const SearchScreen = () => {
     const history = useHistory();
     const {title} = useParams();
     const [searchTitle, setSearchTitle] = useState(title);
+    const [popular, setPopular] = useState(true);
     const [results, setResults] = useState({results:[]});
     useEffect(() => {
-        if(title !== undefined && title.type !== undefined) {
+        // if(title !== undefined && title.type !== undefined) {
             setSearchTitle(title)
             findMoviesByTitle(title)
-        }
     },[title])
     const findMoviesByTitle = (title) => {
-        history.push(title);
-        movieService.findMoviesByTitle(title)
-            .then((results) => {
-                setResults(results)
-            })
+        if (title === undefined || title === "" || title.type !== undefined) {
+            setPopular(true)
+            movieService.findPopular()
+                .then((result) => {
+                    setResults(result)
+                })
+        } else {
+            setPopular(false)
+            history.push(title);
+            movieService.findMoviesByTitle(title)
+                .then((results) => {
+                    setResults(results)
+                })
+        }
     }
     return (
         <div>
@@ -35,6 +44,9 @@ const SearchScreen = () => {
                 className="btn btn-primary">
                 Search
             </button>
+            {
+                popular && <h3>Popular Movies</h3>
+            }
             <ul className="list-group">
                 {
                     results.results && results.results.map((movie) => {

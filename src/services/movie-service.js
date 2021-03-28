@@ -24,6 +24,11 @@ const findMovieByIMDB = (id) => {
         .then(response => response.json())
 }
 
+const findPopular = () => {
+    return fetch(`https://api.themoviedb.org/3/movie/popular?api_key=481adc0fe1fe4c92d90b3afd667e5e1c&language=en-US&page=1`)
+        .then(response => response.json())
+}
+
 export default {
-    findMoviesByTitle, findMovieByIMDB
+    findMoviesByTitle, findMovieByIMDB, findPopular
 }
