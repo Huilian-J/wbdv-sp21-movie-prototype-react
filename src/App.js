@@ -1,32 +1,25 @@
-import './App.css';
-import React from 'react';
-import Search from "./components/search";
-import Details from "./components/details";
+import SearchScreen from "./components/search-screen";
+import DetailsScreen from "./components/details-screen";
 import {BrowserRouter, Route} from "react-router-dom";
-import Home from "./components/Home";
+import HomeScreen from "./components/home-screen";
+import './App.css';
 
 function App() {
-  return (
-    <div className="container-fluid">
-        <BrowserRouter>
-            <Route
-                exact={true}
-                path={["/"]}>
-                <Home/>
-            </Route>
-            <Route
-                exact={true}
-                path={["/search", "/search/:mid"]}>
-                <Search/>
-            </Route>
-            <Route
-                exact={true}
-                path={["/details/:mid"]}>
-                <Details/>
-            </Route>
-        </BrowserRouter>
-    </div>
-  );
+    return (
+        <div className="container-fluid">
+            <BrowserRouter>
+                <Route path="/" exact={true}>
+                    <HomeScreen/>
+                </Route>
+                <Route path={["/search", "/search/:title"]} exact={true}>
+                    <SearchScreen/>
+                </Route>
+                <Route path="/details/:imdbID" exact={true}>
+                    <DetailsScreen/>
+                </Route>
+            </BrowserRouter>
+        </div>
+    );
 }
 
 export default App;
