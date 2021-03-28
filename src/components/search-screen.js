@@ -5,12 +5,13 @@ import movieService from "../services/movie-service";
 const SearchScreen = () => {
     const history = useHistory();
     const {title} = useParams();
-    console.log(title);
     const [searchTitle, setSearchTitle] = useState(title);
     const [results, setResults] = useState({results:[]});
     useEffect(() => {
-        setSearchTitle(title)
-        findMoviesByTitle(title)
+        if(title !== undefined && title.type !== undefined) {
+            setSearchTitle(title)
+            findMoviesByTitle(title)
+        }
     },[title])
     const findMoviesByTitle = (title) => {
         history.push(title);

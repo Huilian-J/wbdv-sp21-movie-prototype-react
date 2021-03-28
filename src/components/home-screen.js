@@ -6,7 +6,7 @@ const HomeScreen = () => {
         <div>
             <h2 style={{textAlign:'center'}}>Home Screen</h2>
             <br/>
-            <Link to="/search">
+            <Link to="/search/">
                 <h2 style={{textAlign:'center'}}>Search</h2>
             </Link>
             <br/>
