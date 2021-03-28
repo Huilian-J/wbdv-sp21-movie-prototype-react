@@ -1,70 +1,71 @@
-# Getting Started with Create React App
+# Movie-Rating-Web
+Web Development Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Project name: Movie Rating Website
+Project team member: Huilian Jiang, Yufeng Gao, Jiazhen Tang
+ 
+**1.State the problem you are trying to solve**
+ 
+For movie lovers, we would like to enable all people to know movies that they are interested in, and at the same time help them discover new movies. To provide movie fans a platform to search, get and save movie information, we plan and build up a movie rating website from scratch. In this web application, we are going to use a real API to search for movies as we type, also add movies to and remove them from our favorites. Furthermore, we could optimize the search engine for the website. For fetching users, we need to optimize our website so that it can appear when a person searches for a movie rating, comment and review.
+	
+**1. Include a description of at least two types of users that would use your Web application**
 
-## Available Scripts
+We are making this web application that has following types of users:
+Admin: Admin users have access to admin pages.
+General user: Users can be granted access to websites and force users to login if user identity is required to fulfill a service.
+Guest: Support functionality for anonymous users. For example, anonymous users should be able to search movies, view movie details, read movie reviews, etc.
+	
+**2. For each of the types of users, provide two goals the user would like to achieve with your Web application**
 
-In the project directory, you can run:
+Admins are authorized users on a user's account.
+Modify Movie: create, update, and delete Movie content
+Manage users: Create/update user with information and delete user account
+	Guests can retrieve general information.
+Search and get information about Movies
+Users can be granted access to sites.
+Login/Logout user account
+Create, update and user profile 
+Search movie using search bar
+Review and rate movie
+Add/modify favorite list
+Add/modify watch later list
+ 
+**2.State the overall strategy of how you intend to solve the problem**
 
-### `npm start`
+By using TMDB API to support our date, we would like to build a website which supports users including general users and guests. We could give users the authority to rate, and give guests the authority to review their favorite list or watch for later list.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Users can register and login to access with more functionality which include rating, save moves as favorite and watch later list. Guests are also welcome to explore movies, and check information on their interested movies. Admin account is set to manage movie databases and user accounts if needed.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+We plan to use REACT as frontend, Java as backend/middleware, and SQL for database. 
+ 
+**3. One of the main requirements is to work with data available from some public, free, Web API. Provide a brief description of the Web API you intend to use**
 
-### `npm test`
+The **TMDB** API service is for our team using movie data in our application. This is a free public API resource. The API provides for the team to programmatically fetch and use the data and images. 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Below is a API to get the primary information about a movie on TMDB:	
+https://api.themoviedb.org/3/movie/{movie_id}?api_key=<<api_key>>&language=en-US
 
-### `npm run build`
+TMDB API Guide:
+https://developers.themoviedb.org/3/getting-started/introduction
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+API Endpoints:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Get the primary information about a movie.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+	GET/movie/{movie_id}
 
-### `npm run eject`
+Grab the following account states for a session:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- Movie rating
+- If it belongs to your watchlist
+- If it belongs to your favourite list
+	
+		GET/movie/{movie_id}/account_states
+	
+Get the images that belong to a movie.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+	GET/movie/{movie_id}/images
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Get a list of recommended movies for a movie.
+ 
+	GET/movie/{movie_id}/recommendations
