@@ -3,6 +3,7 @@ import { Link, useParams, useHistory } from "react-router-dom";
 import movieService from "../services/movie-service";
 import tmdb from "../tmdb.png";
 import searchmovie from "../searchmovie.png";
+import MovieGrid from "./movie/movie-grid";
 
 const SearchScreen = () => {
     // const history = useHistory();
@@ -96,15 +97,9 @@ const SearchScreen = () => {
             }
             <ul className="list-group">
                 {
-                    results.results && results.results.map((movie) => {
-                        return (
-                            <li className="list-group-item">
-                                <Link to={`/details/${movie.id}`}>
-                                    {movie.title}
-                                </Link>
-                            </li>
-                        )
-                    })
+                    results.results &&
+                        <MovieGrid movies={results.results}/>
+                    }
                 }
             </ul>
             {
