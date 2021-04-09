@@ -42,9 +42,9 @@ const SearchScreen = () => {
     }
     return (
         <div>
-            <nav className="navbar navbar-expand-lg navbar-light bg-light">
+            <nav className="navbar navbar-expand-lg navbar-light bg-transparent">
                 <img width="50" src={tmdb} />
-                <a className="navbar-brand" href="#">MovieDB Search</a>
+                <a className="navbar-brand ml-3" href="#">MovieDB Search</a>
                 <button className="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -57,41 +57,37 @@ const SearchScreen = () => {
                             <a className="nav-link" href="#">Home <span className="sr-only">(current)</span></a>
                         </li>
                     </ul>
-                    <button type="button" className="btn btn-primary">Sign In</button>
+                    <Link to="/login">
+                        <button type="button" className="btn btn-primary">Sign In</button>
+                    </Link>
                 </div>
             </nav>
-            {/*<table>*/}
-            {/*    <tbody>*/}
-            {/*    <tr>*/}
-            {/*        <td>*/}
-            {/*            <img width="50" src={tmdb} />*/}
-            {/*        </td>*/}
-            {/*        <td>*/}
-            {/*            MovieDB Search*/}
-            {/*        </td>*/}
-            {/*    </tr>*/}
-            {/*    </tbody>*/}
-            {/*</table>*/}
-            <p><img width="50" src={searchmovie} />Search Movie</p>
-            <input value={searchTitle}
-                onChange={(event) => {
-                    setSearchTitle(event.target.value)
-                }}
-                className="form-control" />
-            {
-                (searchTitle !== undefined && searchTitle !== "") &&
-                <Link to={`/search/${searchTitle}/page/1`}
-                    className="btn btn-primary">
-                    Search
-                </Link>
-            }
-            {
-                (searchTitle === undefined || searchTitle === "") &&
-                <Link to={`/search`}
-                    className="btn btn-primary">
-                    Search
-                </Link>
-            }
+            <div className="row mt-3">
+                <div className="col-10">
+                    <input value={searchTitle}
+                           onChange={(event) => {
+                               setSearchTitle(event.target.value)
+                           }}
+                           className="form-control"/>
+                </div>
+                <div className="col-2">
+                    {
+                        (searchTitle !== undefined && searchTitle !== "") &&
+                        <Link to={`/search/${searchTitle}/page/1`}
+                              className="btn btn-primary">
+                            <img width="25" src={searchmovie} />Search Movie
+                        </Link>
+                    }
+                    {
+                        (searchTitle === undefined || searchTitle === "") &&
+                        <Link to={`/search`}
+                              className="btn btn-primary">
+                            <img width="25" src={searchmovie} />
+                            Search
+                        </Link>
+                    }
+                </div>
+            </div>
             {
                 popular && <h3>Popular Movies</h3>
             }
